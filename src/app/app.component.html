@@ -3,7 +3,7 @@
     <header class="header">
       <div class="level">
         <h3 class="block level-item-left">
-          <span class="mdi mdi-file-document-multiple-outline icon"></span>
+          <span class="mdi mdi-calendar-outline icon"></span>
           <span>twoje zadania</span>
         </h3>
       </div>
@@ -34,7 +34,7 @@
       *ngIf="todos.length"
     >
       <app-todo-card
-        class="column is-11"
+        class="column is-12"
         *ngFor="let el of todos.reverse() | todosFilter:filter "
         (deleted)="onDel($event)"
         (complition)="toggleStatus($event)"
