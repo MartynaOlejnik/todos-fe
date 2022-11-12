@@ -1,0 +1,50 @@
+<div class="container content is-max-desktop">
+  <div class="tasks section">
+    <header class="header">
+      <div class="level">
+        <h3 class="block level-item-left">
+          <span class="mdi mdi-file-document-multiple-outline icon"></span>
+          <span>twoje zadania</span>
+        </h3>
+      </div>
+      <app-todo-add class="todo-form" (todo)="addTodo($event)"></app-todo-add>
+    </header>
+    <div class="toolbox level">
+      <div class="level-item-left">
+        <app-add-button class="block" (click)="emptyTodo()"></app-add-button>
+      </div>
+      <div class="level-item-right list-actions">
+        <button class="button">
+          <span
+            class="mdi mdi-filter-outline icon"
+            (click)="emptyTodo()"
+            (mouseover)="toggleTip[1] = !toggleTip[1]"
+            (mouseout)="toggleTip[1] = !toggleTip[1]"
+          ></span>
+          <span>filtry:</span>
+        </button>
+        <div class="filters-list">
+          <span (click)="setFilter('all')">wszystkie | </span>
+          <span (click)="setFilter('done')">zrobione | </span><span (click)="setFilter('todo')">do zrobienia</span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="columns todos-list is-centered is-variable is-8 is-multiline"
+      *ngIf="todos.length"
+    >
+      <app-todo-card
+        class="column is-11"
+        *ngFor="let el of todos.reverse() | todosFilter:filter "
+        (deleted)="onDel($event)"
+        (complition)="toggleStatus($event)"
+        (newTodo)="addTodo($event)"
+        [todo]="el"
+      ></app-todo-card>
+    </div>
+
+    <div class="info hero is-halfheight" *ngIf="!todos.length">
+      <app-info class="hero-body level"></app-info>
+    </div>
+  </div>
+</div>

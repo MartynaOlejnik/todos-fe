@@ -1,0 +1,5 @@
+/.angular/*
+/node_modules/*
+/__MACOSX/*
+/dist/*
+/package-lock.json

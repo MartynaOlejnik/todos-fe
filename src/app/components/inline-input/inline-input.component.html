@@ -1,0 +1,5 @@
+<div class="inline-input">
+    <div class="control field inline-control ">
+        <input class="inline-input input is-fullwidth" type="text" (focus)="onFocusChange(true)" (focusout)="onFocusChange(false)" placeholder="{{placeholeder}}" [(ngModel)]="value" (keyup)="emitData()" #inlineinpt/>
+    </div>
+</div>

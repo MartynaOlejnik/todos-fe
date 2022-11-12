@@ -1,0 +1,53 @@
+<div
+  class="box todo-item"
+  [class]="todo.isCompleted ? 'done' : 'inprogress'"
+  [class.create]="!todo.id"
+  [class.active]="active"
+>
+  <div class="level">
+    <div class="wrap-left">
+      <div class="wrap-status">
+        <span
+          class="mdi status icon"
+          (mouseout)="isTooltip = !isTooltip"
+          (mouseover)="isTooltip = !isTooltip"
+          [class]="
+            todo.isCompleted && !active
+              ? 'mdi-file-check-outline'
+              : !todo.id
+              ? 'mdi-file-plus-outline'
+              : active && todo.id
+              ? 'mdi-file-edit-outline'
+              : 'mdi-file-outline'
+          "
+          (click)="toggleStatus(todo)"
+        ></span>
+
+        <app-tooltip
+          [desc]="getType(todo)"
+          [class.hide]="!isTooltip"
+        ></app-tooltip>
+      </div>
+      <app-inline-input
+        class="inline-input-box"
+        [value]="todo.value"
+        [placeholeder]="'na przykład sprzątanie'"
+        (isFocused)="toggleActive($event)"
+        (keyup.enter)="saveValue()"
+        (result)="changeVal($event)"
+      ></app-inline-input>
+    </div>
+    <div class="level-item-right">
+      <span
+        class="mdi mdi-delete-outline icon delete-btn"
+        *ngIf="todo.value && !active"
+        (click)="delTodo(todo.id)"
+      ></span>
+      <span
+        class="mdi mdi-check icon add-btn"
+        *ngIf="!todo.id || active"
+        (click)="saveValue()"
+      ></span>
+    </div>
+  </div>
+</div>
