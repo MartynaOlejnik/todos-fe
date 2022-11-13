@@ -1,31 +1,24 @@
-<div class="container content is-max-desktop">
-  <div class="tasks section">
-    <header class="header">
+<header class="header main">
+  <div class="level">
+    <h3 class="block level-item-left">
+      <span class="mdi mdi-monitor-cellphone-star icon"></span>
+      <span>nowoczesne techniki programowania aplikacji</span>
+    </h3>
+  </div>
+</header>
+<div class="container content is-max-desktop tasks">
+    
+    <div class="toolbox">
       <div class="level">
-        <h3 class="block level-item-left">
-          <span class="mdi mdi-calendar-outline icon"></span>
-          <span>twoje zadania</span>
-        </h3>
-      </div>
-      <app-todo-add class="todo-form" (todo)="addTodo($event)"></app-todo-add>
-    </header>
-    <div class="toolbox level">
-      <div class="level-item-left">
-        <app-add-button class="block" (click)="emptyTodo()"></app-add-button>
-      </div>
-      <div class="level-item-right list-actions">
-        <button class="button">
-          <span
-            class="mdi mdi-filter-outline icon"
-            (click)="emptyTodo()"
-            (mouseover)="toggleTip[1] = !toggleTip[1]"
-            (mouseout)="toggleTip[1] = !toggleTip[1]"
-          ></span>
-          <span>filtry:</span>
-        </button>
-        <div class="filters-list">
-          <span (click)="setFilter('all')">wszystkie | </span>
-          <span (click)="setFilter('done')">zrobione | </span><span (click)="setFilter('todo')">do zrobienia</span>
+        <div class="level-item-left">
+          
+      <h3 class="list-title">
+        <span class="mdi mdi-format-list-bulleted-square icon"></span>
+          <span>twoja lista zadań:</span>
+      </h3>
+        </div>
+        <div class="level-item-right list-actions">         
+          <app-add-button class="block" (click)="emptyTodo()"></app-add-button>
         </div>
       </div>
     </div>
@@ -35,7 +28,7 @@
     >
       <app-todo-card
         class="column is-12"
-        *ngFor="let el of todos.reverse() | todosFilter:filter "
+        *ngFor="let el of todos.reverse() | todosFilter: filter"
         (deleted)="onDel($event)"
         (complition)="toggleStatus($event)"
         (newTodo)="addTodo($event)"
@@ -47,4 +40,3 @@
       <app-info class="hero-body level"></app-info>
     </div>
   </div>
-</div>
